@@ -10,8 +10,8 @@ import java.util.stream.Collectors;
 public class SealedTemplateWithSlots extends SealedTemplate {
     private final List<BoosterSlot> boosterSlots;
 
-    public SealedTemplateWithSlots(String name0, Iterable<Pair<String, Integer>> itrSlots, List<BoosterSlot> boosterSlots) {
-        super(name0, itrSlots);
+    public SealedTemplateWithSlots(String name0, Iterable<Pair<String, Integer>> itrSlots, List<BoosterSlot> boosterSlots, int maxCopies) {
+        super(name0, itrSlots, maxCopies);
         this.boosterSlots = boosterSlots;
     }
 

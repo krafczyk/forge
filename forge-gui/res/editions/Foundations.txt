@@ -11,28 +11,29 @@ Prerelease=6 Boosters, 1 RareMythic+
 BoosterBox=36
 
 [Common]
-Base=Common:!fromSheet("FDN gain lands"):fromSheet("FDN cards")
+Base=Common:fromSheet("FDN cards")
 
 [Common-Guest]
-Base=Common:!fromSheet("FDN gain lands"):fromSheet("FDN cards")
+Base=Common:fromSheet("FDN cards")
 Replace=.015625F fromSheet("FDN special guests")
 
 [Uncommon]
 Base=Uncommon:fromSheet("FDN cards")
 
 [RareMythic]
-Base=RareMythic:fromSheet("FDN cards")
+Base=Rare:fromSheet("FDN cards")
+Replace=.128F Mythic:fromSheet("FDN cards")
 Replace=.077F Rare:fromSheet("FDN borderless")
 Replace=.015F Mythic:fromSheet("FDN borderless")
 
 [AnyLand]
 Base=fromSheet("FDN gain lands")
-Replace=.25F Land:fromSheet("FDN full art")
+Replace=.25F BasicLand:fromSheet("FDN full art")
 Replace=.25F BasicLand:fromSheet("FDN cards"):!fromSheet("FDN gain lands")
 
 [Wildcard]
 Base=Uncommon:fromSheet("FDN cards")
-Replace=.167F Common:fromSheet("FDN cards")
+Replace=.188F Common:fromSheet("FDN cards")
 Replace=.163F Rare:fromSheet("FDN cards")
 Replace=.026F Mythic:fromSheet("FDN cards")
 Replace=.016F Common:fromSheet("FDN borderless")

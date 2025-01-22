@@ -635,7 +635,7 @@ public final class QuestUtilCards {
             Pair.of(BoosterSlots.COMMON, questPreferences.getPrefInt(QPref.SHOP_SINGLES_COMMON)),
             Pair.of(BoosterSlots.UNCOMMON, questPreferences.getPrefInt(QPref.SHOP_SINGLES_UNCOMMON)),
             Pair.of(BoosterSlots.RARE_MYTHIC, questPreferences.getPrefInt(QPref.SHOP_SINGLES_RARE))
-        ));
+        ), 0);
     }
 
     private SealedTemplate getBoosterTemplate() {
@@ -643,7 +643,7 @@ public final class QuestUtilCards {
             Pair.of(BoosterSlots.COMMON, questPreferences.getPrefInt(QPref.BOOSTER_COMMONS)),
             Pair.of(BoosterSlots.UNCOMMON, questPreferences.getPrefInt(QPref.BOOSTER_UNCOMMONS)),
             Pair.of(BoosterSlots.RARE_MYTHIC, questPreferences.getPrefInt(QPref.BOOSTER_RARES))
-        ));
+        ), 0);
     }
 
     public static SealedTemplate getColoredBoosterTemplate(final String color) {
@@ -652,7 +652,7 @@ public final class QuestUtilCards {
                     Pair.of(BoosterSlots.COMMON + ":color(\"" + color + "\"):!" + BoosterSlots.LAND, 11),
                     Pair.of(BoosterSlots.UNCOMMON + ":color(\"" + color + "\"):!" + BoosterSlots.LAND, 3),
                     Pair.of(BoosterSlots.RARE_MYTHIC + ":color(\"" + color + "\"):!" + BoosterSlots.LAND, 1),
-                    Pair.of(BoosterSlots.LAND + ":color(\"" + color + "\")", 1))
+                    Pair.of(BoosterSlots.LAND + ":color(\"" + color + "\")", 1)), 0
             );
         } else {
             StringBuilder restrictions    = new StringBuilder();
@@ -672,7 +672,7 @@ public final class QuestUtilCards {
                     Pair.of(BoosterSlots.COMMON + ":color(\"" + color + "\"):!" + BoosterSlots.LAND + restrictions, 11),
                     Pair.of(BoosterSlots.UNCOMMON + ":color(\"" + color + "\"):!" + BoosterSlots.LAND + restrictions, 3),
                     Pair.of(BoosterSlots.RARE_MYTHIC + ":color(\"" + color + "\"):!" + BoosterSlots.LAND + restrictions, 1),
-                    Pair.of(BoosterSlots.LAND + ":color(\"" + color + "\")" + restrictions, 1))
+                    Pair.of(BoosterSlots.LAND + ":color(\"" + color + "\")" + restrictions, 1)), 0
             );
         }
     }

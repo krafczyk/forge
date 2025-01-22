@@ -56,7 +56,7 @@ public class CustomLimited extends DeckBase {
         CardEdition edition = CardEdition.Predicates.getRandomSetWithAllBasicLands(FModel.getMagicDb().getEditions());
         if(edition!=null)//can be null on lazy loading, probably does not work correctly then
             landSetCode=edition.getCode();
-        tpl = new SealedTemplate(slots);
+        tpl = new SealedTemplate(slots, 0);
     }
 
     private static final long serialVersionUID = 7435640939026612173L;

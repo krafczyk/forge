@@ -77,7 +77,7 @@ public class FatPack extends BoxedProduct {
         public int getCntBoosters() { return cntBoosters; }
 
         private Template(CardEdition edition) {
-            super(edition.getCode(), edition.getFatPackExtraSlots());
+            super(edition.getCode(), edition.getFatPackExtraSlots(), 0);
 
             cntBoosters = edition.getFatPackCount();
         }

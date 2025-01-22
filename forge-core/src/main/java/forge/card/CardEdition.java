@@ -281,6 +281,7 @@ public final class CardEdition implements Comparable<CardEdition> {
 
     // Booster/draft info
     private List<BoosterSlot> boosterSlots = null;
+    private int boosterMaxCopies = 0;
     private boolean smallSetOverride = false;
     private boolean foilAlwaysInCommonSlot = false;
     private FoilType foilType = FoilType.NOT_SUPPORTED;
@@ -662,13 +663,19 @@ public final class CardEdition implements Comparable<CardEdition> {
 
             String boosterDesc = metadata.get("Booster");
 
+            if (metadata.contains("BoosterMaxCopies")) {
+                res.boosterMaxCopies =  metadata.getInt("BoosterMaxCopies");
+            } else {
+                res.boosterMaxCopies = 0;
+            }
+
             if (metadata.contains("Booster")) {
                 // Historical naming convention in Forge for "DraftBooster"
                 // Do i have access to editions slots?
                 if (res.boosterSlots != null) {
-                    res.boosterTpl = new SealedTemplateWithSlots(res.code, SealedTemplate.Reader.parseSlots(boosterDesc), res.boosterSlots);
+                    res.boosterTpl = new SealedTemplateWithSlots(res.code, SealedTemplate.Reader.parseSlots(boosterDesc), res.boosterSlots, res.boosterMaxCopies);
                 } else {
-                    res.boosterTpl = new SealedTemplate(res.code, SealedTemplate.Reader.parseSlots(boosterDesc));
+                    res.boosterTpl = new SealedTemplate(res.code, SealedTemplate.Reader.parseSlots(boosterDesc), res.boosterMaxCopies);
                 }
 
                 res.boosterTemplates.put("Draft", res.boosterTpl);
@@ -679,7 +686,7 @@ public final class CardEdition implements Comparable<CardEdition> {
             for (String type : boostertype) {
                 String name = type + "Booster";
                 if (metadata.contains(name)) {
-                    res.boosterTemplates.put(type, new SealedTemplate(res.code, SealedTemplate.Reader.parseSlots(metadata.get(name))));
+                    res.boosterTemplates.put(type, new SealedTemplate(res.code, SealedTemplate.Reader.parseSlots(metadata.get(name)), metadata.getInt("BoosterMaxCopies")));
                 }
             }
 

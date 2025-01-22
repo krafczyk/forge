@@ -17,11 +17,13 @@ public class SealedTemplate {
     public final static SealedTemplate genericDraftBooster = new SealedTemplate(null, Lists.newArrayList(
             Pair.of(BoosterSlots.COMMON, 10), Pair.of(BoosterSlots.UNCOMMON, 3),
             Pair.of(BoosterSlots.RARE_MYTHIC, 1), Pair.of(BoosterSlots.BASIC_LAND, 1)
-    ));
+    ), 0);
 
     protected final List<Pair<String, Integer>> slots;
 
     protected final String name;
+
+    protected final int maxCopies;
 
     public final String getName() {
         return name;
@@ -29,6 +31,10 @@ public class SealedTemplate {
 
     public final List<Pair<String, Integer>> getSlots() {
         return slots;
+    }
+
+    public final int getMaxCopies() {
+        return maxCopies;
     }
 
     public boolean hasSlot(String s) {
@@ -45,17 +51,18 @@ public class SealedTemplate {
     public final String getEdition() {
         return name;
     }
-    public SealedTemplate(Iterable<Pair<String, Integer>> itrSlots) {
-        this(null, itrSlots);
+    public SealedTemplate(Iterable<Pair<String, Integer>> itrSlots, int maxCopies) {
+        this(null, itrSlots, maxCopies);
     }
 
-    public SealedTemplate(String name0, Iterable<Pair<String, Integer>> itrSlots) {
+    public SealedTemplate(String name0, Iterable<Pair<String, Integer>> itrSlots, int maxCopies0) {
         slots = Lists.newArrayList(itrSlots);
         name = name0;
+        maxCopies = maxCopies0;
     }
 
-    public SealedTemplate(String code, String boosterDesc) {
-        this(code, Reader.parseSlots(boosterDesc));
+    public SealedTemplate(String code, String boosterDesc, int maxCopies) {
+        this(code, Reader.parseSlots(boosterDesc), maxCopies);
     }
 
     public int getNumberOfCardsExpected() {
@@ -123,7 +130,7 @@ public class SealedTemplate {
         @Override
         protected SealedTemplate read(String line, int i) {
             String[] headAndData = TextUtil.split(line, ':', 2);
-            return new SealedTemplate(headAndData[0], parseSlots(headAndData[1]));
+            return new SealedTemplate(headAndData[0], parseSlots(headAndData[1]), 0);
         }
     }
 }

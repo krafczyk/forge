@@ -68,7 +68,7 @@ public class BoosterBox extends BoxedProduct {
         public int getCntBoosters() { return cntBoosters; }
 
         private Template(CardEdition edition) {
-            super(edition.getCode(), new ArrayList<>());
+            super(edition.getCode(), new ArrayList<>(), 0);
             cntBoosters = edition.getBoosterBoxCount();
         }
 

@@ -218,7 +218,7 @@ public class SealedCardPoolGenerator {
                         List<Pair<String, Integer>> promoSlot = new ArrayList<>();
                         promoSlot.add(Pair.of(pieces[1], num));
 
-                        SealedTemplate promoProduct = new SealedTemplate("Prerelease Promo", promoSlot);
+                        SealedTemplate promoProduct = new SealedTemplate("Prerelease Promo", promoSlot, 0);
 
                         // Create a "booster" with just the promo card. Rarity + Edition into a Template
                         this.product.add(new UnOpenedProduct(promoProduct, FModel.getMagicDb().getCommonCards().getAllCards(chosenEdition)));

@@ -47,8 +47,8 @@ public class BoosterPack extends SealedProduct {
                 Pair.of(BoosterSlots.COMMON + ":color(\"" + color + "\"):!" + BoosterSlots.LAND, 11),
                 Pair.of(BoosterSlots.UNCOMMON + ":color(\"" + color + "\"):!" + BoosterSlots.LAND, 3),
                 Pair.of(BoosterSlots.RARE_MYTHIC + ":color(\"" + color + "\"):!" + BoosterSlots.LAND, 1),
-                Pair.of(BoosterSlots.LAND + ":color(\"" + color + "\")", 1))
-        ));
+                Pair.of(BoosterSlots.LAND + ":color(\"" + color + "\")", 1)),
+        0));
     }
 
     public BoosterPack(final String name0, final SealedTemplate boosterData) {
