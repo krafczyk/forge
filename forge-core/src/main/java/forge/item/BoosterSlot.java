@@ -48,7 +48,7 @@ public class BoosterSlot {
         float rand = (float) Math.random();
         for (Float key : slotPercentages.keySet()) {
             if (rand < key) {
-                System.out.println("Replaced a base slot! " + slotName + " -> " + slotPercentages.get(key));
+                // System.out.println("Replaced a base slot! " + slotName + " -> " + slotPercentages.get(key));
 
                 return slotPercentages.get(key);
             }

@@ -6,6 +6,7 @@ Type=Core
 ScryfallCode=FDN
 # https://mtgscribe.com/2024/10/28/play-booster-fact-sheet-foundations/
 BoosterSlots=Common,Common-Guest,Uncommon,RareMythic,AnyLand,Wildcard
+BoosterMaxCopies=2
 Booster=6 Common, 1 Common-Guest, 3 Uncommon, 1 RareMythic, 1 AnyLand, 1 Wildcard, 1 Wildcard+
 Prerelease=6 Boosters, 1 RareMythic+
 BoosterBox=36
@@ -15,15 +16,15 @@ Base=Common:fromSheet("FDN cards")
 
 [Common-Guest]
 Base=Common:fromSheet("FDN cards")
-Replace=.015625F fromSheet("FDN special guests")
+Replace=.0156F fromSheet("FDN special guests")
 
 [Uncommon]
 Base=Uncommon:fromSheet("FDN cards")
 
 [RareMythic]
 Base=Rare:fromSheet("FDN cards")
-Replace=.128F Mythic:fromSheet("FDN cards")
 Replace=.077F Rare:fromSheet("FDN borderless")
+Replace=.128F Mythic:fromSheet("FDN cards")
 Replace=.015F Mythic:fromSheet("FDN borderless")
 
 [AnyLand]
@@ -33,11 +34,11 @@ Replace=.25F BasicLand:fromSheet("FDN cards"):!fromSheet("FDN gain lands")
 
 [Wildcard]
 Base=Uncommon:fromSheet("FDN cards")
-Replace=.188F Common:fromSheet("FDN cards")
-Replace=.163F Rare:fromSheet("FDN cards")
-Replace=.026F Mythic:fromSheet("FDN cards")
-Replace=.016F Common:fromSheet("FDN borderless")
 Replace=.024F Uncommon:fromSheet("FDN borderless")
+Replace=.377F Common:fromSheet("FDN cards")
+Replace=.016F Common:fromSheet("FDN borderless")
+Replace=.124F Rare:fromSheet("FDN cards")
+Replace=.022F Mythic:fromSheet("FDN cards")
 
 [cards]
 1 M Sire of Seven Deaths @Lius Lasahido

@@ -263,7 +263,7 @@ public class BoosterGenerator {
                         : edition.getSlotReplaceCommonWith().trim();
                 PrintSheet replaceSheet = getPrintSheet(replaceKey);
                 result.addAll(replaceSheet.random(1, true));
-                System.out.println("Common was replaced with something from the replace sheet...");
+                // System.out.println("Common was replaced with something from the replace sheet...");
                 replaceCommon = false;
             }
 
@@ -398,7 +398,7 @@ public class BoosterGenerator {
         for (Pair<String, Integer> slot : template.getSlots()) {
             String slotType = slot.getLeft().trim();
             int numCards = slot.getRight();
-            System.out.println(numCards + " of type " + slotType);
+            // System.out.println(numCards + " of type " + slotType);
 
             // For cards that end in '+', attempt to convert this card to foil.
             boolean convertCardFoil = slotType.endsWith("+");
@@ -584,9 +584,7 @@ public class BoosterGenerator {
             if (mainCode.regionMatches(true, 0, "fromSheet", 0, 9) ||
                     mainCode.regionMatches(true, 0, "wholeSheet", 0, 10)
             ) { // custom print sheet
-                System.out.println("Parsing from main code: " + mainCode);
                 String sheetName = StringUtils.strip(mainCode.substring(10), "()\" ");
-                System.out.println("Attempting to lookup: " + sheetName);
                 src = StaticData.instance().getPrintSheets().get(sheetName).toFlatList();
                 setPred = x -> true;
 
