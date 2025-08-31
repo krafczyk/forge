@@ -8,6 +8,8 @@ import com.badlogic.gdx.backends.lwjgl3.Lwjgl3WindowAdapter;
 import com.badlogic.gdx.graphics.glutils.HdpiMode;
 import com.badlogic.gdx.utils.SharedLibraryLoader;
 import forge.Forge;
+import forge.model.FModel;
+import forge.localinstance.properties.ForgePreferences.FPref;
 import forge.adventure.util.Config;
 import org.lwjgl.system.Configuration;
 
@@ -27,8 +29,9 @@ public class GameLauncher {
         //increase MemoryStack to 1MB, default is 64kb
         Configuration.STACK_SIZE.set(1024);
         Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
+        boolean landscapeMode = FModel.getPreferences().getPrefBoolean(FPref.UI_LANDSCAPE_MODE);
         ApplicationListener start = Forge.getApp(new Lwjgl3Clipboard(), new Main.DesktopAdapter(switchOrientationFile),//todo get totalRAM && isTabletDevice
-                assetsDir, false, false, 0, false, 0, "", "");
+                assetsDir, false, landscapeMode, 0, false, 0, "", "");
         if (Config.instance().getSettingData().fullScreen) {
             config.setFullscreenMode(Lwjgl3ApplicationConfiguration.getDisplayMode());
             config.setAutoIconify(true);

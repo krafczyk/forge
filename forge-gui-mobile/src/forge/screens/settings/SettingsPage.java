@@ -153,6 +153,26 @@ public class SettingsPage extends TabPage<SettingsScreen> {
                     Config.instance().saveSettings();
                 }
             },0);
+            lstSettings.addItem(new BooleanSetting(FPref.UI_LANDSCAPE_MODE,
+                    Forge.getLocalizer().getMessage("lblLandscapeMode"),
+                    Forge.getLocalizer().getMessage("nlLandscapeMode")) {
+                @Override
+                public void select() {
+                    super.select();
+                    boolean landscapeMode = FModel.getPreferences().getPrefBoolean(FPref.UI_LANDSCAPE_MODE);
+                    Forge.getDeviceAdapter().setLandscapeMode(landscapeMode); //ensure device able to save off ini file so landscape change takes effect
+                    if (Forge.isLandscapeMode() != landscapeMode) {
+                        FOptionPane.showConfirmDialog(Forge.getLocalizer().getMessage("lblRestartForgeDescription"), Forge.getLocalizer().getMessage("lblRestartForge"), Forge.getLocalizer().getMessage("lblRestart"), Forge.getLocalizer().getMessage("lblLater"), new Callback<Boolean>() {
+                            @Override
+                            public void run(Boolean result) {
+                                if (result) {
+                                    Forge.restart(true);
+                                }
+                            }
+                        });
+                    }
+                }
+            }, 0);
             lstSettings.addItem(new CustomSelectSetting(FPref.UI_VIDEO_MODE,
                     Forge.getLocalizer().getMessage("lblVideoMode"),
                     Forge.getLocalizer().getMessage("nlVideoMode"),
