@@ -57,4 +57,8 @@ public class BoosterSlot {
         // If we didn't find a key, return the base rarity from that edition
         return baseRarity;
     }
+
+    public TreeMap<Float, String> getSlotPercentages() {
+        return slotPercentages;
+    }
 }
