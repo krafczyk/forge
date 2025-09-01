@@ -5,13 +5,11 @@ import java.util.TreeMap;
 
 public class BoosterSlot {
     private final String slotName;
-    private String baseRarity;
     private float startRange = 0.0f;
-    private final TreeMap<Float, String> slotPercentages = new TreeMap<>();
+    private final TreeMap<Float, String> slotSegments = new TreeMap<>();
 
     public BoosterSlot(final String slotName, final List<String> contents) {
         this.slotName = slotName;
-        this.baseRarity = null;
         parseContents(contents);
     }
 
@@ -33,32 +31,23 @@ public class BoosterSlot {
             String value = parts[1];
 
             if (key.equalsIgnoreCase("Base")) {
-                baseRarity = value;
+                slotSegments.put((float)0., value);
             } else if (key.equalsIgnoreCase("Replace")) {
                 // Are there other things?
                 String[] replaceParts = value.split(" ", 2);
                 float pct = Float.parseFloat(replaceParts[0]);
                 startRange += pct;
-                slotPercentages.put(startRange, replaceParts[1]);
+                slotSegments.put(startRange, replaceParts[1]);
             }
         }
     }
 
     public String replaceSlot() {
         float rand = (float) Math.random();
-        for (Float key : slotPercentages.keySet()) {
-            if (rand < key) {
-                System.out.println("Replaced a base slot! " + slotName + " -> " + slotPercentages.get(key));
-
-                return slotPercentages.get(key);
-            }
-        }
-
-        // If we didn't find a key, return the base rarity from that edition
-        return baseRarity;
+        return slotSegments.floorEntry(rand).getValue();
     }
 
-    public TreeMap<Float, String> getSlotPercentages() {
-        return slotPercentages;
+    public TreeMap<Float, String> getSlotSegments() {
+        return slotSegments;
     }
 }
