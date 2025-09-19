@@ -86,6 +86,14 @@ public class BoosterGenerator {
         return StaticData.instance().getPrintSheets().get(alteredSheetName);
     }
 
+    public static List<List<PaperCard>> getBoosterPacks(SealedTemplate template, int n) {
+        List<List<PaperCard>> result = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            result.add(getBoosterPack(template));
+        }
+        return result;
+    }
+
     public static List<PaperCard> getBoosterPack(SealedTemplate template) {
         if (template instanceof SealedTemplateWithSlots slots) {
             return BoosterGenerator.getBoosterPack(slots);
