@@ -47,6 +47,7 @@ import java.util.function.Predicate;
 public class BoosterGenerator {
     private final static Map<String, String> staticSheetsCorrespondance = new HashMap<>();
     private final static Map<String, PrintSheet> cachedSheets = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+    private static boolean verbose = false;
     private static synchronized PrintSheet getPrintSheet(String key) {
         if (!cachedSheets.containsKey(key))
             cachedSheets.put(key, makeSheet(key, StaticData.instance().getCommonCards().getAllCards()));
@@ -62,6 +63,10 @@ public class BoosterGenerator {
         Collections.shuffle(cardList, MyRandom.getRandom());
         PaperCard randomCard = cardList.get(0);
         return randomCard.getFoiled();
+    }
+
+    public static void setVerbose(boolean v) {
+        verbose = v;
     }
 
     public static PrintSheet tryGetStaticSheet(String sheetName) {
@@ -293,7 +298,9 @@ public class BoosterGenerator {
                         : edition.getSlotReplaceCommonWith().trim();
                 PrintSheet replaceSheet = getPrintSheet(replaceKey);
                 result.addAll(replaceSheet.random(1, true));
-                System.out.println("Common was replaced with something from the replace sheet...");
+                if (verbose) {
+                    System.out.println("Common was replaced with something from the replace sheet...");
+                }
                 replaceCommon = false;
             }
 
@@ -428,7 +435,9 @@ public class BoosterGenerator {
         for (Pair<String, Integer> slot : template.getSlots()) {
             String slotType = slot.getLeft().trim();
             int numCards = slot.getRight();
-            System.out.println(numCards + " of type " + slotType);
+            if (verbose) {
+                System.out.println(numCards + " of type " + slotType);
+            }
 
             // For cards that end in '+', attempt to convert this card to foil.
             boolean convertAllToFoil = slotType.endsWith("+");
@@ -638,9 +647,11 @@ public class BoosterGenerator {
             if (mainCode.regionMatches(true, 0, "fromSheet", 0, 9) ||
                     mainCode.regionMatches(true, 0, "wholeSheet", 0, 10)
             ) { // custom print sheet
-                System.out.println("Parsing from main code: " + mainCode);
                 String sheetName = StringUtils.strip(mainCode.substring(10), "()\" ");
-                System.out.println("Attempting to lookup: " + sheetName);
+                if (verbose) {
+                    System.out.println("Parsing from main code: " + mainCode);
+                    System.out.println("Attempting to lookup: " + sheetName);
+                }
                 src = tryGetStaticSheet(sheetName).toFlatList();
                 setPred = x -> true;
 
